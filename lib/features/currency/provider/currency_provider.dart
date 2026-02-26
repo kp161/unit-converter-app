@@ -18,10 +18,18 @@ class CurrencyProvider extends ChangeNotifier{
     isLoading = true;
     notifyListeners();
 
-    _rates = await _api.getRates(from);
+    final newRates = await _api.getRates(from);
+
+    if(newRates.isNotEmpty){
+      _rates = newRates;
+      convert();
+    }
+    else {
+
+    }
 
     isLoading = false;
-    convert();
+    notifyListeners();
   }
 
   void setFrom(String value){
