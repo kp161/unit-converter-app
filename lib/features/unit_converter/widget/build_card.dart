@@ -36,7 +36,7 @@ class BuildCard extends StatelessWidget {
         return ListView.separated(
           padding: EdgeInsets.all(16),
           itemCount: unitList!.length,
-          separatorBuilder: (_, __) => const Divider(),
+          separatorBuilder: (_, _) => const Divider(),
           itemBuilder: (context, index) {
             final selectedUnit = unitList![index];
 
@@ -88,8 +88,8 @@ class BuildCard extends StatelessWidget {
                 title,
                 style: TextStyle(
                   color: isDark
-                      ? Colors.white.withOpacity(0.5)
-                      : Colors.black.withOpacity(0.5),
+                      ? Colors.white.withValues(alpha: 0.5)
+                      : Colors.black.withValues(alpha: 0.5),
                   letterSpacing: 1.2,
                   fontSize: 12,
                 ),

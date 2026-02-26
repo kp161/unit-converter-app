@@ -53,8 +53,8 @@ class HomeTopBar extends StatelessWidget {
               padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: isDark
-                    ? Colors.white.withOpacity(0.06)
-                    : Colors.black.withOpacity(0.05),
+                    ? Colors.white.withValues(alpha: 0.06)
+                    : Colors.black.withValues(alpha: 0.05),
                 borderRadius: BorderRadius.circular(15),
                 border: Border.all(
                   color: isDark ? Colors.white24 : Colors.black12,
@@ -62,8 +62,8 @@ class HomeTopBar extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     color: isDark
-                        ? Colors.white.withOpacity(0.1)
-                        : Colors.black.withOpacity(0.1),
+                        ? Colors.white.withValues(alpha: 0.1)
+                        : Colors.black.withValues(alpha: 0.1),
                     blurRadius: 10,
                     offset: Offset(0, 4),
                   ),

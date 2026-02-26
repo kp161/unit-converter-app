@@ -8,6 +8,7 @@ Map<dynamic, List<CategoryItemsModel>> getCategoryItems(BuildContext context) {
   void navigate(String title, List<String> units, String category) {
     FocusScope.of(context).unfocus();
     Future.delayed(Duration(milliseconds: 150), () {
+      if(!context.mounted) return;
       Navigator.of(context).push(
         smoothRoute(
           UnitConverterPage(title: title, units: units, category: category),

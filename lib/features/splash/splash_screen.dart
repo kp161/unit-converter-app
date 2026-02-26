@@ -13,7 +13,6 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
@@ -32,12 +31,18 @@ class _SplashScreenState extends State<SplashScreen>
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutBack));
     _controller.forward();
 
+    final navigator = Navigator.of(context);
+
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.of(
-        context,
-      ).pushReplacement(smoothRoute(ChangeNotifierProvider(
-        create: (_) => SearchProvider(),
-        child: CategoryPage())));
+      if (!context.mounted) return;
+      navigator.pushReplacement(
+        smoothRoute(
+          ChangeNotifierProvider(
+            create: (_) => SearchProvider(),
+            child: CategoryPage(),
+          ),
+        ),
+      );
     });
   }
 

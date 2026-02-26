@@ -102,6 +102,7 @@ class UnitConverterController extends ChangeNotifier {
       }
     } catch (e) {
       resultValue = "N/A";
+      if(!context.mounted) return;
       showFlushBar(
         context: context,
         message: "This currency pair is not supported.",
