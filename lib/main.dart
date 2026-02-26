@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:unit_converter/core/theme/theme_provider.dart';
 import 'package:unit_converter/features/splash/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
-  runApp(const MyApp());
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -14,30 +14,26 @@ void main() {
       statusBarBrightness: Brightness.light,
     ),
   );
+
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  bool isDark = false;
-
-  void _toggleTheme() {
-    setState(() {
-      isDark = !isDark;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final themeProvider = context.watch<ThemeProvider>();
+
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
+      themeMode: themeProvider.themeMode,
 
       ///light theme
       theme: ThemeData(
@@ -45,7 +41,7 @@ class _MyAppState extends State<MyApp> {
         brightness: Brightness.light,
         fontFamily: 'Inter',
         scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarThemeData(
+        appBarTheme: AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: Colors.transparent,
             statusBarIconBrightness: Brightness.dark,
@@ -68,7 +64,7 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
-      home: SplashScreen(toggleTheme: _toggleTheme),
+      home: SplashScreen(),
     );
   }
 }

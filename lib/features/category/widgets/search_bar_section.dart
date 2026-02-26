@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:unit_converter/features/category/provider/search_provider.dart';
 
-class SearchBarSection extends StatelessWidget {
-  final ValueChanged<String> onChanged;
-  const SearchBarSection({super.key, required this.onChanged});
+class SearchBarSection extends StatefulWidget {
+  const SearchBarSection({super.key});
+
+  @override
+  State<SearchBarSection> createState() => _SearchBarSectionState();
+}
+
+class _SearchBarSectionState extends State<SearchBarSection> {
+  final FocusNode _focusNode = FocusNode();
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +42,20 @@ class SearchBarSection extends StatelessWidget {
             size: 20,
           ),
           const SizedBox(width: 10),
-          Expanded(child: TextField(
-            onChanged: onChanged,
-            style: TextStyle(color: isDark ? Colors.white : Colors.black),
-            decoration: InputDecoration(
-              hintText: 'Search Conversion...',
-              border: InputBorder.none,
-              isDense: true
+          Expanded(
+            child: TextField(
+              focusNode: _focusNode,
+              onChanged: (value) {
+                context.read<SearchProvider>().updateQuery(value);
+              },
+              style: TextStyle(color: isDark ? Colors.white : Colors.black),
+              decoration: InputDecoration(
+                hintText: 'Search Conversion...',
+                border: InputBorder.none,
+                isDense: true,
+              ),
             ),
-          ))
+          ),
         ],
       ),
     );

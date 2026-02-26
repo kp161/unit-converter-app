@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:unit_converter/core/theme/theme_provider.dart';
 import 'package:unit_converter/widgets/convert_icon.dart';
 
 class HomeTopBar extends StatelessWidget {
-  final bool isDark;
-  final VoidCallback onThemeToggle;
-
-  const HomeTopBar({
-    super.key,
-    required this.isDark,
-    required this.onThemeToggle,
-  });
+  const HomeTopBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = context.watch<ThemeProvider>();
+    final isDark = themeProvider.isDark;
+
     return SafeArea(
       child: Row(
         children: [
@@ -46,7 +44,9 @@ class HomeTopBar extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: onThemeToggle,
+            onTap: () {
+              context.read<ThemeProvider>().toggleTheme();
+            },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,

@@ -134,6 +134,7 @@ class _UnitConverterViewState extends State<UnitConverterView>
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         toolbarHeight: 40,
         elevation: 0,
@@ -159,35 +160,39 @@ class _UnitConverterViewState extends State<UnitConverterView>
           ),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: OrientationBuilder(
-          builder: (context, orientation) {
-            final isLandscape = orientation == Orientation.landscape;
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: OrientationBuilder(
+            builder: (context, orientation) {
+              final isLandscape = orientation == Orientation.landscape;
 
-            if (isLandscape) {
-              return Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: SingleChildScrollView(child: _animatedList(cards)),
-                  ),
-                  const SizedBox(width: 20),
-                  Expanded(
-                    flex: 4,
-                    child: SingleChildScrollView(child: animatedKeyboard(c)),
-                  ),
-                ],
-              );
-            } else {
-              return Column(
-                children: [
-                  Expanded(child: _animatedList(cards)),
-                  animatedKeyboard(c),
-                ],
-              );
-            }
-          },
+              if (isLandscape) {
+                return Row(
+                  children: [
+                    Expanded(
+                      flex: 5,
+                      child: _animatedList(cards),
+                    ),
+                    const SizedBox(width: 20),
+                    Expanded(
+                      flex: 4,
+                      child: animatedKeyboard(c),
+                    ),
+                  ],
+                );
+              } else {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _animatedList(cards),
+                    const Spacer(),
+                    animatedKeyboard(c),
+                  ],
+                );
+              }
+            },
+          ),
         ),
       ),
     );
@@ -199,19 +204,19 @@ class _UnitConverterViewState extends State<UnitConverterView>
         mainAxisAlignment: MainAxisAlignment.start,
         children: List.generate(
           widgets.length,
-          (index) => AnimationConfiguration.staggeredList(
+          (index) {
+
+            return AnimationConfiguration.staggeredList(
             position: index,
             duration: Duration(milliseconds: 450),
             child: SlideAnimation(
               verticalOffset: 50,
               child: FadeInAnimation(
-                child: Padding(
-                  padding: EdgeInsets.only(bottom: 20),
-                  child: widgets[index],
-                ),
+                child: widgets[index],
               ),
             ),
-          ),
+          );
+          }
         ),
       ),
     );

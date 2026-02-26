@@ -70,8 +70,11 @@ class BuildCard extends StatelessWidget {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
+    final orientation = MediaQuery.of(context).orientation;
+    final isLandscape = orientation == Orientation.landscape;
+
     return Container(
-      padding: const EdgeInsets.all(15),
+      padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: isDark ? Color(0xFF1E293B) : Color(0xFFF6F6F8),
         borderRadius: BorderRadius.circular(22),
@@ -95,11 +98,11 @@ class BuildCard extends StatelessWidget {
               _chip(context),
             ],
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: isLandscape ? 7 : 10),
           Text(
             value,
             style: TextStyle(
-              fontSize: 30,
+              fontSize: isLandscape ? 28 : 30,
               fontWeight: FontWeight.w800,
               color: isFrom
                   ? (isDark ? Colors.white : Colors.black)
@@ -118,7 +121,7 @@ class BuildCard extends StatelessWidget {
     return GestureDetector(
       onTap: isCurrency ? onCurrencyTap : () => _showUnitPicker(context),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
         decoration: BoxDecoration(
           color: isDark ? Color(0xFF2A3152) : Color(0xFFE6F1FB),
           borderRadius: BorderRadius.circular(20),

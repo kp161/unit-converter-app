@@ -9,8 +9,8 @@ class SwapButton extends StatelessWidget{
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 42,
-        width: 42,
+        height: 40,
+        width: 40,
         decoration: BoxDecoration(
           color: Color(0xFF4F46E5),
           shape: BoxShape.circle,

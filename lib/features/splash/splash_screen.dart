@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:unit_converter/features/category/provider/search_provider.dart';
 import 'package:unit_converter/features/category/ui/category_page.dart';
 import 'package:unit_converter/core/routes/smooth_route.dart';
 
 class SplashScreen extends StatefulWidget {
-  final VoidCallback toggleTheme;
-  const SplashScreen({super.key, required this.toggleTheme});
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -34,7 +35,9 @@ class _SplashScreenState extends State<SplashScreen>
     Future.delayed(Duration(seconds: 3), () {
       Navigator.of(
         context,
-      ).pushReplacement(smoothRoute(CategoryPage(toggleTheme: widget.toggleTheme)));
+      ).pushReplacement(smoothRoute(ChangeNotifierProvider(
+        create: (_) => SearchProvider(),
+        child: CategoryPage())));
     });
   }
 

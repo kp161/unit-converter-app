@@ -9,6 +9,9 @@ class StaticKeyboard extends StatelessWidget{
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
+    final orientation = MediaQuery.of(context).orientation;
+    final isLandscape = orientation == Orientation.landscape;
+
     final keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '⌫'];
 
     return GridView.builder(
@@ -17,9 +20,9 @@ class StaticKeyboard extends StatelessWidget{
       itemCount: keys.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        mainAxisSpacing: 10,
+        mainAxisSpacing: 8,
         crossAxisSpacing: 10,
-        childAspectRatio: 1.5,
+        childAspectRatio: isLandscape ? 1.7 : 1.5,
       ),
       itemBuilder: (context, index){
         return GestureDetector(
