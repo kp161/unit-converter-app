@@ -9,16 +9,6 @@ Route smoothRoute(Widget page) {
         opacity: animation,
         child: child,
       );
-
-      // final slideAnimation = Tween<Offset>(
-      //   begin: const Offset(0, 0.5),
-      //   end: Offset.zero,
-      // ).animate(fadeAnimation);
-
-      // return FadeTransition(
-      //   opacity: fadeAnimation,
-      //   child: SlideTransition(position: slideAnimation, child: child),
-      // );
     },
   );
 }
