@@ -31,7 +31,7 @@ android {
     }
     signingConfigs {
         create("release") {
-            storeFile = file("D:/Flutter_Projects/unit_converter/upload-keystore.jks")
+            storeFile = file("D:/Flutter_Projects/unit_converter/android/app/upload-keystore.jks")
             storePassword = "ksp@1610"
             keyAlias = "upload"
             keyPassword = "ksp@1610"
@@ -39,7 +39,7 @@ android {
         // The default "debug" signingConfig is already created by the Android Gradle plugin.
         // If you want to customize it, use getByName("debug") instead of create("debug").
         getByName("debug") {
-            storeFile = file("D:/Flutter_Projects/unit_converter/upload-keystore.jks")
+            storeFile = file("D:/Flutter_Projects/unit_converter/android/app/upload-keystore.jks")
             storePassword = "ksp@1610"
             keyAlias = "upload"
             keyPassword = "ksp@1610"
