@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.kashish.unitconverter"
+    namespace = "com.infynno.unitconverter"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,13 +21,29 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.kashish.unitconverter"
+        applicationId = "com.infynno.unitconverter"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+    }
+    signingConfigs {
+        create("release") {
+            storeFile = file("D:/Flutter_Projects/unit_converter/upload-keystore.jks")
+            storePassword = "ksp@1610"
+            keyAlias = "upload"
+            keyPassword = "ksp@1610"
+        }
+        // The default "debug" signingConfig is already created by the Android Gradle plugin.
+        // If you want to customize it, use getByName("debug") instead of create("debug").
+        getByName("debug") {
+            storeFile = file("D:/Flutter_Projects/unit_converter/upload-keystore.jks")
+            storePassword = "ksp@1610"
+            keyAlias = "upload"
+            keyPassword = "ksp@1610"
+        }
     }
 
     buildTypes {

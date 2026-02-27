@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:unit_converter/core/theme/theme_provider.dart';
-import 'package:unit_converter/widgets/convert_icon.dart';
+import 'package:unit_converter/widgets/converter_logo.dart';
 
 class HomeTopBar extends StatelessWidget {
   const HomeTopBar({super.key});
@@ -20,7 +20,7 @@ class HomeTopBar extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    ConvertIcon(),
+                    ConverterLogo(),
                     const SizedBox(width: 5),
                     Text(
                       'ConvertX',

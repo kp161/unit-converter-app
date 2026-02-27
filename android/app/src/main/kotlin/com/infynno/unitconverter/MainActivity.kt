@@ -1,4 +1,4 @@
-package com.kashish.unitconverter
+package com.infynno.unitconverter
 
 import io.flutter.embedding.android.FlutterActivity
 

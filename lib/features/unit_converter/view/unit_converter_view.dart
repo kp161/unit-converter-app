@@ -6,7 +6,7 @@ import 'package:unit_converter/features/unit_converter/provider/unit_converter_c
 import 'package:unit_converter/features/unit_converter/widget/build_card.dart';
 import 'package:unit_converter/features/unit_converter/widget/static_keyboard.dart';
 import 'package:unit_converter/features/unit_converter/widget/swap_button.dart';
-import 'package:unit_converter/widgets/convert_icon.dart';
+import 'package:unit_converter/widgets/converter_logo.dart';
 
 class UnitConverterView extends StatefulWidget {
   final String title;
@@ -142,7 +142,7 @@ class _UnitConverterViewState extends State<UnitConverterView>
         backgroundColor: Colors.transparent,
         leading: Padding(
           padding: EdgeInsets.only(left: 15, top: 6, bottom: 6),
-          child: ConvertIcon(),
+          child: ConverterLogo(),
         ),
         centerTitle: true,
         title: Hero(
