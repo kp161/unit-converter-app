@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unit_converter/core/theme/theme_provider.dart';
 import 'package:unit_converter/features/splash/splash_screen.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setSystemUIOverlayStyle(
@@ -15,9 +16,12 @@ void main() {
     ),
   );
 
+  final prefs = await SharedPreferences.getInstance();
+  final bool savedTheme = prefs.getBool('isDarkMode') ?? true;
+
   runApp(
     ChangeNotifierProvider(
-      create: (_) => ThemeProvider(),
+      create: (_) => ThemeProvider(initialTheme: savedTheme),
       child: const MyApp(),
     ),
   );
